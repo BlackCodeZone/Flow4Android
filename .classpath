@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="src" path="src/test/resources"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="con" path="org.springsource.ide.eclipse.gradle.classpathcontainer"/>
+	<classpathentry exported="true" kind="lib" path="/Users/wuxian/Documents/sourcecode/self/flow-test-android/libs/ddmlib-prebuilt.jar"/>
+	<classpathentry exported="true" kind="lib" path="/Users/wuxian/Documents/sourcecode/self/flow-test-android/libs/hosttestlib.jar"/>
+	<classpathentry exported="true" kind="lib" path="/Users/wuxian/Documents/sourcecode/self/flow-test-android/libs/junit.jar"/>
+	<classpathentry exported="true" kind="lib" path="/Users/wuxian/Documents/sourcecode/self/flow-test-android/libs/tradefed-prebuilt.jar" sourcepath="/tradefederation"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
