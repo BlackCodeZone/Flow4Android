@@ -53,7 +53,7 @@ public class HomePage {
 			e.printStackTrace();
 		}
 		initLog();
-		DeviceManager deviceManager = new DeviceManager();
+		deviceManager = new DeviceManager();
 		deviceManager.init();
 
 	}
