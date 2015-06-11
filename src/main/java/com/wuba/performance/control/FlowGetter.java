@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 import com.android.tradefed.device.DeviceNotAvailableException;
 import com.android.tradefed.device.ITestDevice;
+import com.wuba.performance.model.FlowData;
 
 public class FlowGetter {
 	private static final String PID_COMMAND_PREFIX = "dumpsys package %s | grep userId";
@@ -18,13 +19,12 @@ public class FlowGetter {
 	public FlowGetter() {
 	}
 
-	public FlowGetter(ITestDevice device, String appPackage) {
+	public FlowGetter(ITestDevice device) {
 		this.device = device;
-		this.appPackage = appPackage;
-		
+
 	}
 
-	public void setUserId() throws DeviceNotAvailableException {
+	public void setUserId(String appPackage) throws DeviceNotAvailableException {
 		// 获得com.package对应的pid
 		String userIdStr = device.executeShellCommand(String.format(
 				PID_COMMAND_PREFIX, appPackage));
@@ -32,15 +32,28 @@ public class FlowGetter {
 
 	}
 
-	public void getFlowData() throws DeviceNotAvailableException {
+	public FlowData getFlowData() throws DeviceNotAvailableException {
 		// 得到上行和下行流量
-		if(userId == null) return;
+		if (userId == null)
+			return null;
 		String flowCommand = String.format(FLOW_COMMAND, userId);
 		String flow = device.executeShellCommand(flowCommand);
-		System.out.println(flow);
+		String[] args = flow.trim().replaceAll("\\r", "").split("\\n");
+		FlowData flowData = null;
+		if (args != null && args.length > 1) {
+			int up = Integer.parseInt(args[0]);
+			int down = Integer.parseInt(args[1]);
+			int total = up + down;
+			flowData = new FlowData();
+			flowData.setUp(up);
+			flowData.setDown(down);
+			flowData.setTotal(total);
+		}
+
+		return flowData;
 	}
 
-	public String getUserId(String userIdStr) {
+	private String getUserId(String userIdStr) {
 		if (userIdStr == null || userIdStr.length() <= 0)
 			return null;
 		Pattern p = Pattern.compile(USERID_REGEX);
@@ -49,7 +62,6 @@ public class FlowGetter {
 		while (m.find()) {
 			userId = m.group(1);
 		}
-		System.out.println(userId);
 		return userId;
 	}
 

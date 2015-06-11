@@ -1,6 +1,12 @@
 package com.wuba.performance.model;
 
 public class FlowData {
+	@Override
+	public String toString() {
+		return "FlowData [up=" + up + ", down=" + down + ", total=" + total
+				+ "]";
+	}
+
 	public int getUp() {
 		return up;
 	}
@@ -34,5 +40,5 @@ public class FlowData {
 
 	public FlowData() {
 	}
-
+	
 }

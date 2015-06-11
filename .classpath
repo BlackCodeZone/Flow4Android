@@ -4,11 +4,13 @@
 	<classpathentry kind="src" path="src/main/resources"/>
 	<classpathentry kind="src" path="src/test/java"/>
 	<classpathentry kind="src" path="src/test/resources"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry exported="true" kind="con" path="org.springsource.ide.eclipse.gradle.classpathcontainer"/>
-	<classpathentry exported="true" kind="lib" path="/Users/wuxian/Documents/sourcecode/self/flow-test-android/libs/ddmlib-prebuilt.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/wuxian/Documents/sourcecode/self/flow-test-android/libs/hosttestlib.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/wuxian/Documents/sourcecode/self/flow-test-android/libs/junit.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/wuxian/Documents/sourcecode/self/flow-test-android/libs/tradefed-prebuilt.jar" sourcepath="/tradefederation"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" exported="true"/>
+	<classpathentry kind="con" path="org.springsource.ide.eclipse.gradle.classpathcontainer" exported="true"/>
 	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="lib" path="/Users/wuxian/.gradle/caches/modules-2/files-2.1/jfree/jfreechart/1.0.13/b5fbdc552c4caec3dac4b4dcbc10d119a194946e/jfreechart-1.0.13.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/wuxian/.gradle/caches/modules-2/files-2.1/jfree/jcommon/1.0.16/4e9db93cbb47f8a7ed7da1ce9d50dacd561d2616/jcommon-1.0.16-sources.jar" kind="lib" path="/Users/wuxian/.gradle/caches/modules-2/files-2.1/jfree/jcommon/1.0.16/376f19a7c317509a57dfc684cdfd4081db7c082c/jcommon-1.0.16.jar" exported="true"/>
+	<classpathentry kind="lib" path="/Users/wuxian/Documents/sourcecode/self/flow-test-android/libs/ddmlib-prebuilt.jar" exported="true"/>
+	<classpathentry kind="lib" path="/Users/wuxian/Documents/sourcecode/self/flow-test-android/libs/hosttestlib.jar" exported="true"/>
+	<classpathentry kind="lib" path="/Users/wuxian/Documents/sourcecode/self/flow-test-android/libs/junit.jar" exported="true"/>
+	<classpathentry kind="lib" path="/Users/wuxian/Documents/sourcecode/self/flow-test-android/libs/tradefed-prebuilt.jar" exported="true"/>
 </classpath>
