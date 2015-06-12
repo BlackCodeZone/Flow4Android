@@ -23,8 +23,6 @@ public class FADeviceManager {
 		return mFaDeviceManager;
 	}
 
-	
-
 	public void stopDeviceManager() {
 		if (deviceManager != null) {
 			deviceManager.terminate();

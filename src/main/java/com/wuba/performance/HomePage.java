@@ -7,7 +7,13 @@ package com.wuba.performance;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
+
+import javax.swing.GroupLayout;
+import javax.swing.JFrame;
+import javax.swing.LayoutStyle;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.WindowConstants;
 
 import com.wuba.performance.view.ControlView;
 import com.wuba.performance.view.MonitorView;
@@ -15,7 +21,7 @@ import com.wuba.performance.view.MonitorView;
 /**
  * @author wuxian
  */
-public class HomePage extends javax.swing.JFrame {
+public class HomePage extends JFrame {
 
 	/**
 	 * Creates new form HomePage
@@ -38,9 +44,9 @@ public class HomePage extends javax.swing.JFrame {
 	private void initComponents() {
 
 		controlView = new ControlView();
-		MonitorView = new MonitorView();
+		monitorView = new MonitorView();
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowAdapter() {
 
 			@Override
@@ -49,55 +55,43 @@ public class HomePage extends javax.swing.JFrame {
 				super.windowClosing(e);
 				FADeviceManager.getInstance().stopDeviceManager();
 				System.exit(-1);
-				
+
 			}
 
 		});
-		// setLocation(new java.awt.Point(100, 500));
-		// setLocationRelativeTo(null);
-		// setSize(800, 600);
+		//组管理器
 
-		javax.swing.GroupLayout monitorPanel1Layout = new javax.swing.GroupLayout(
-				MonitorView);
-		MonitorView.setLayout(monitorPanel1Layout);
-		monitorPanel1Layout.setHorizontalGroup(monitorPanel1Layout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGap(0, 0, Short.MAX_VALUE));
-		monitorPanel1Layout.setVerticalGroup(monitorPanel1Layout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGap(0, 402, Short.MAX_VALUE));
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
-				getContentPane());
+		GroupLayout layout = new GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
 		layout.setHorizontalGroup(layout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addComponent(controlView,
-						javax.swing.GroupLayout.DEFAULT_SIZE, 800,
+				.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addComponent(controlView, GroupLayout.DEFAULT_SIZE, 800,
 						Short.MAX_VALUE)
 				.addGroup(
 						layout.createSequentialGroup()
 								.addContainerGap()
-								.addComponent(MonitorView,
-										javax.swing.GroupLayout.DEFAULT_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE,
+								.addComponent(monitorView,
+										GroupLayout.DEFAULT_SIZE,
+										GroupLayout.DEFAULT_SIZE,
 										Short.MAX_VALUE)));
-		layout.setVerticalGroup(layout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		layout.setVerticalGroup(layout.createParallelGroup(
+				GroupLayout.Alignment.LEADING)
 				.addGroup(
 						layout.createSequentialGroup()
 								.addComponent(controlView,
-										javax.swing.GroupLayout.PREFERRED_SIZE,
-										192,
-										javax.swing.GroupLayout.PREFERRED_SIZE)
+										GroupLayout.PREFERRED_SIZE, 192,
+										GroupLayout.PREFERRED_SIZE)
 								.addPreferredGap(
-										javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addComponent(MonitorView,
-										javax.swing.GroupLayout.DEFAULT_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE,
+										LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(monitorView,
+										GroupLayout.DEFAULT_SIZE,
+										GroupLayout.DEFAULT_SIZE,
 										Short.MAX_VALUE)));
 
 		pack();
+		//居中显示
+		setLocationRelativeTo(null);
 	}// </editor-fold>//GEN-END:initComponents
 
 	/**
@@ -115,10 +109,10 @@ public class HomePage extends javax.swing.JFrame {
 		 * /tutorial/uiswing/lookandfeel/plaf.html
 		 */
 		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
+			for (UIManager.LookAndFeelInfo info : UIManager
 					.getInstalledLookAndFeels()) {
 				if ("Nimbus".equals(info.getName())) {
-					javax.swing.UIManager.setLookAndFeel(info.getClassName());
+					UIManager.setLookAndFeel(info.getClassName());
 					break;
 				}
 			}
@@ -131,7 +125,7 @@ public class HomePage extends javax.swing.JFrame {
 		} catch (IllegalAccessException ex) {
 			java.util.logging.Logger.getLogger(HomePage.class.getName()).log(
 					java.util.logging.Level.SEVERE, null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+		} catch (UnsupportedLookAndFeelException ex) {
 			java.util.logging.Logger.getLogger(HomePage.class.getName()).log(
 					java.util.logging.Level.SEVERE, null, ex);
 		}
@@ -147,6 +141,6 @@ public class HomePage extends javax.swing.JFrame {
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private ControlView controlView;
-	private MonitorView MonitorView;
+	private MonitorView monitorView;
 	// End of variables declaration//GEN-END:variables
 }
