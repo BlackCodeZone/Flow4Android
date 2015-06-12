@@ -29,6 +29,7 @@ public class HomePage extends JFrame {
 	public HomePage() {
 		initDevice();
 		initComponents();
+		
 	}
 
 	private void initDevice() {
@@ -59,8 +60,7 @@ public class HomePage extends JFrame {
 			}
 
 		});
-		//组管理器
-
+		// 组管理器
 
 		GroupLayout layout = new GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
@@ -90,7 +90,7 @@ public class HomePage extends JFrame {
 										Short.MAX_VALUE)));
 
 		pack();
-		//居中显示
+		// 居中显示
 		setLocationRelativeTo(null);
 	}// </editor-fold>//GEN-END:initComponents
 

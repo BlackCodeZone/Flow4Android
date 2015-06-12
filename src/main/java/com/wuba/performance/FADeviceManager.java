@@ -5,12 +5,15 @@ import java.util.List;
 import com.android.tradefed.config.ConfigurationException;
 import com.android.tradefed.config.GlobalConfiguration;
 import com.android.tradefed.device.DeviceManager;
+import com.android.tradefed.device.ITestDevice;
+import com.android.tradefed.device.IDeviceManager.FreeDeviceState;
 import com.android.tradefed.log.LogRegistry;
 import com.android.tradefed.log.StdoutLogger;
 
 public class FADeviceManager {
 	private DeviceManager deviceManager;
 	private static FADeviceManager mFaDeviceManager = null;
+	
 
 	public FADeviceManager() {
 	}
@@ -50,5 +53,25 @@ public class FADeviceManager {
 
 	private void initLog() {
 		LogRegistry.getLogRegistry().registerLogger(new StdoutLogger());
+	}
+
+	public boolean hasDevice() {
+		if (deviceManager == null) {
+			System.out.println("deviceManager not init");
+			return false;
+		}
+
+		if (deviceManager.getAvailableDevices().size() > 0) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public ITestDevice getDevice() {
+		return deviceManager.allocateDevice();
+	}
+	public void freeDevice(ITestDevice device){
+		deviceManager.freeDevice(device, FreeDeviceState.AVAILABLE);
 	}
 }

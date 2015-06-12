@@ -5,36 +5,35 @@
  */
 package com.wuba.performance.view;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridLayout;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.CategoryLabelPositions;
-import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
-import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.renderer.category.LineAndShapeRenderer;
-import org.jfree.chart.title.TextTitle;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.general.DatasetUtilities;
+
+import com.android.tradefed.device.ITestDevice;
 
 /**
  *
  * @author wuxian
  */
 public class MonitorView extends JPanel {
-	private javax.swing.JPanel flowChat;
+	public ITestDevice getmDevice() {
+		return mDevice;
+	}
 
+	public void setmDevice(ITestDevice mDevice) {
+		this.mDevice = mDevice;
+	}
+
+	private JPanel flowChat;
+	
+	private ITestDevice mDevice;
 	/**
 	 * Creates new form MonitorPanel
 	 */
@@ -42,13 +41,12 @@ public class MonitorView extends JPanel {
 		initComponents();
 
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
 		// this.setBackground(Color.cyan);
 		makeLineAndShapeChart();
-		flowChat.setBackground(Color.RED);
 		this.setLayout(new GridLayout(1, 1));
 		this.add(flowChat);
 
@@ -72,7 +70,7 @@ public class MonitorView extends JPanel {
 		//折线说明
 		String[] rowKeys = { "up", "down", "total" };
 		//横坐标
-		String[] columnKeys = { "北京", "上海", "广州", "成都", "深圳" };
+		String[] columnKeys = { "1", "2", "3", "4", "5" };
 		CategoryDataset dataset = getBarData(data, rowKeys, columnKeys);
 
 		flowChat = createTimeXYChar("流量使用趋势图", "时间", "流量(B)", dataset);
