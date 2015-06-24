@@ -7,9 +7,11 @@ package com.wuba.performance.view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -23,11 +25,18 @@ import com.wuba.performance.FADeviceManager;
 import com.wuba.performance.control.FlowGetter;
 import com.wuba.performance.model.FlowData;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.lang.Runtime;
+import java.lang.ProcessBuilder;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author wuxian
  */
 public class ControlView extends JPanel implements Runnable {
+	
 
 	public boolean isRun() {
 		return isRun;
@@ -50,13 +59,17 @@ public class ControlView extends JPanel implements Runnable {
 	private FlowGetter flowGetter;
 
 	private boolean isRun;
-
+	private MonitorView mMonitorView;
+	
 	/**
 	 * Creates new form MonitorView
+	 * @param monitorView TODO
 	 */
-	public ControlView() {
+	public ControlView(MonitorView monitorView) {
 		initComponents();
+		this.mMonitorView = monitorView;
 	}
+	
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -75,7 +88,6 @@ public class ControlView extends JPanel implements Runnable {
 		endButton = new JButton();
 
 		startButton.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -179,13 +191,32 @@ public class ControlView extends JPanel implements Runnable {
 
 	private void startButtonPressed() throws DeviceNotAvailableException {
 		System.out.println("start");
-
+//		try
+//        {	
+//			String command1 = "adb shell cd proc/uid_stat/10083 && cat tcp_rcv && cat tcp_snd";
+//            Process process1 = Runtime.getRuntime().exec (command1);
+//            InputStreamReader ir=new InputStreamReader(process1.getInputStream());
+//            BufferedReader input = new BufferedReader (ir);
+//            String line;
+//            while ((line = input.readLine ()) != null){
+//                float i = Float.parseFloat(line)/1024;
+//                System.out.println(i+"kbytes");
+//            }
+//            float rcv = Float.parseFloat(input.readLine ())/1024;
+//            float snd = Float.parseFloat(input.readLine ())/1024;
+//            System.out.println("rcv:" + rcv + "KBytes");
+//            System.out.println("snd:" + snd + "KBytes");
+//        }
+//        catch (java.io.IOException e){
+//            System.err.println ("IOException " + e.getMessage());
+//        }
 		if (!FADeviceManager.getInstance().hasDevice()) {
 			// 弹出警告框，提示信息是未发现设备
-
+			JOptionPane.showMessageDialog(null, "There is no device right now", "alert", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		device = FADeviceManager.getInstance().getDevice();
+		
 		flowGetter = new FlowGetter(device);
 		flowGetter.setUserId("com.wuba");
 		// 启动线程
@@ -200,7 +231,7 @@ public class ControlView extends JPanel implements Runnable {
 	private void flagButtonPressed() {
 		System.out.println("flag");
 		if (startButton.isEnabled()) {
-			System.out.println("还为开始,无反应");
+			System.out.println("还未开始,无反应");
 			return;
 		}
 	}
@@ -221,9 +252,8 @@ public class ControlView extends JPanel implements Runnable {
 
 		while (isRun) {
 			try {
-
-				FlowData flowData = flowGetter.getFlowData();
-				System.out.println(flowData.toString());
+				mMonitorView.addData(flowGetter.getFlowData());
+				
 				Thread.sleep(1000);
 			} catch (DeviceNotAvailableException e) {
 				// TODO Auto-generated catch block

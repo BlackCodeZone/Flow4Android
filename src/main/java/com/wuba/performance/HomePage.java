@@ -43,9 +43,9 @@ public class HomePage extends JFrame {
 	 */
 	@SuppressWarnings("unchecked")
 	private void initComponents() {
-
-		controlView = new ControlView();
 		monitorView = new MonitorView();
+		controlView = new ControlView(monitorView);
+		
 
 		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowAdapter() {
