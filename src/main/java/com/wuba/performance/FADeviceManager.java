@@ -5,8 +5,8 @@ import java.util.List;
 import com.android.tradefed.config.ConfigurationException;
 import com.android.tradefed.config.GlobalConfiguration;
 import com.android.tradefed.device.DeviceManager;
-import com.android.tradefed.device.ITestDevice;
 import com.android.tradefed.device.IDeviceManager.FreeDeviceState;
+import com.android.tradefed.device.ITestDevice;
 import com.android.tradefed.log.LogRegistry;
 import com.android.tradefed.log.StdoutLogger;
 

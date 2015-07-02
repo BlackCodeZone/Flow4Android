@@ -37,6 +37,7 @@ public class FlowData {
 	private int down;
 	// 总流量
 	private int total;
+	//
 
 	public FlowData() {
 	}
